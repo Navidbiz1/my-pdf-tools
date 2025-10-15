@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDF to Word - Glorious Techs</title>
+    <style>
+    body { background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%); color: white; font-family: 'Segoe UI', sans-serif; margin: 0; padding: 0; min-height: 100vh; }
+    .glass-navbar { background: rgba(255,255,255,0.1); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.2); padding: 1rem 0; position: fixed; width: 100%; top: 0; z-index: 1000; }
+    .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 0 2rem; }
+    .logo-wrapper { display: flex; align-items: center; gap: 0.75rem; }
+    .logo-icon { font-size: 2rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .logo-main { font-size: 1.5rem; font-weight: bold; background: linear-gradient(135deg, #fff 0%, #a8b9ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .logo-sub { font-size: 0.8rem; color: #cbd5e1; }
+    .stat-badge { background: rgba(255,255,255,0.1); padding: 0.5rem 1rem; border-radius: 25px; border: 1px solid rgba(255,255,255,0.2); display: flex; align-items: center; gap: 0.5rem; font-size: 0.9rem; }
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 2rem; padding-top: 100px; }
+    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; color: #a8b9ff; text-decoration: none; font-weight: 600; margin-bottom: 2rem; padding: 0.5rem 1rem; border-radius: 10px; transition: all 0.3s ease; }
+    .back-btn:hover { background: rgba(168, 185, 255, 0.1); transform: translateX(-5px); }
+    .tool-container { background: rgba(255,255,255,0.1); backdrop-filter: blur(20px); border: 1px solid rgba(255,255,255,0.2); border-radius: 20px; padding: 3rem; max-width: 900px; margin: 2rem auto; position: relative; overflow: hidden; }
+    .tool-header { text-align: center; margin-bottom: 3rem; }
+    .tool-title { font-size: 2.5rem; font-weight: 700; margin-bottom: 1rem; background: linear-gradient(135deg, #fff 0%, #a8b9ff 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+    .tool-subtitle { color: #cbd5e1; font-size: 1.2rem; }
+    .coming-soon { text-align: center; padding: 4rem 2rem; }
+    .coming-icon { font-size: 4rem; color: #667eea; margin-bottom: 2rem; }
+    .feature-list { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 3rem 0; }
+    .feature-item { background: rgba(255,255,255,0.05); padding: 1.5rem; border-radius: 15px; text-align: center; }
+    .feature-icon { font-size: 2rem; color: #667eea; margin-bottom: 1rem; }
+    </style>
+</head>
+<body>
+    <nav class="glass-navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <div class="logo-wrapper">
+                    <i class="fas fa-file-pdf logo-icon"></i>
+                    <div class="logo-text">
+                        <div class="logo-main">Glorious Techs</div>
+                        <div class="logo-sub">PDF Free Tools</div>
+                    </div>
+                </div>
+            </div>
+            <div class="nav-stats">
+                <div class="stat-badge">
+                    <i class="fas fa-file-word"></i>
+                    <span>PDF to Word Tool</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container">
+        <a href="index.html" class="back-btn">
+            <i class="fas fa-arrow-left"></i>
+            Back to Home
+        </a>
+
+        <div class="tool-container">
+            <div class="tool-header">
+                <h1 class="tool-title">PDF to Word Converter</h1>
+                <p class="tool-subtitle">Convert PDF files to editable Word documents with perfect formatting</p>
+            </div>
+
+            <div class="coming-soon">
+                <div class="coming-icon">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <h2>🚧 Coming Soon</h2>
+                <p>We're working hard to bring you the best PDF to Word conversion experience.</p>
+                <p>This feature requires advanced server processing and will be available soon!</p>
+                
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-edit"></i>
+                        </div>
+                        <h4>Fully Editable</h4>
+                        <p>Convert to fully editable Word documents</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-magic"></i>
+                        </div>
+                        <h4>Format Preserved</h4>
+                        <p>Maintain original formatting and layout</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">
+                            <i class="fas fa-bolt"></i>
+                        </div>
+                        <h4>High Accuracy</h4>
+                        <p>Advanced OCR for text recognition</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
+</body>
+</html>
