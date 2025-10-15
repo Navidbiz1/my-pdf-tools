@@ -3,35 +3,192 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Free PDF Tools</title>
+    <title>PDFMaster - Professional PDF Tools</title>
     <link rel="stylesheet" href="css/style.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <header>
-            <h1>🛠️ Free PDF Tools</h1>
-            <p>100% Free - No Registration Required</p>
-        </header>
-        
-        <div class="tools-grid">
-            <div class="tool-card">
-                <h3>📄 Merge PDF</h3>
-                <p>Multiple PDF files ko ek saath merge karein</p>
-                <a href="merge-pdf.html" class="btn">Use Tool</a>
-            </div>
-            
-            <div class="tool-card">
-                <h3>✂️ Split PDF</h3>
-                <p>PDF ko alag-alag pages mein divide karein</p>
-                <a href="split-pdf.html" class="btn">Use Tool</a>
-            </div>
-            
-            <div class="tool-card">
-                <h3>🖼️ PDF to JPG</h3>
-                <p>PDF pages ko JPG images mein convert karein</p>
-                <a href="pdf-to-jpg.html" class="btn">Use Tool</a>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-file-pdf"></i>
+                PDFMaster
             </div>
         </div>
-    </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">All-in-One <span class="gradient-text">PDF Solutions</span></h1>
+                <p class="hero-subtitle">100% Free • No Watermarks • No Registration</p>
+                <div class="hero-stats">
+                    <div class="stat">
+                        <i class="fas fa-users"></i>
+                        <span>10+ Professional Tools</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Secure & Private</span>
+                    </div>
+                    <div class="stat">
+                        <i class="fas fa-bolt"></i>
+                        <span>Instant Processing</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools Grid -->
+    <section class="tools-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Professional PDF Tools</h2>
+                <p>Powerful tools for all your PDF needs</p>
+            </div>
+            
+            <div class="tools-grid">
+                <!-- Tool 1: Merge PDF -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-object-group"></i>
+                    </div>
+                    <h3>Merge PDF</h3>
+                    <p>Combine multiple PDF files into one document</p>
+                    <a href="merge-pdf.html" class="tool-btn">
+                        <span>Use Tool</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Tool 2: Split PDF -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-cut"></i>
+                    </div>
+                    <h3>Split PDF</h3>
+                    <p>Extract specific pages or split PDF into multiple files</p>
+                    <a href="split-pdf.html" class="tool-btn">
+                        <span>Use Tool</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Tool 3: Compress PDF -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-compress-alt"></i>
+                    </div>
+                    <h3>Compress PDF</h3>
+                    <p>Reduce PDF file size without quality loss</p>
+                    <a href="compress-pdf.html" class="tool-btn">
+                        <span>Use Tool</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Tool 4: PDF to Word -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-word"></i>
+                    </div>
+                    <h3>PDF to Word</h3>
+                    <p>Convert PDF to editable Word documents</p>
+                    <a href="pdf-to-word.html" class="tool-btn">
+                        <span>Use Tool</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Tool 5: Word to PDF -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h3>Word to PDF</h3>
+                    <p>Convert Word documents to PDF format</p>
+                    <a href="word-to-pdf.html" class="tool-btn">
+                        <span>Use Tool</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Tool 6: PDF to JPG -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-image"></i>
+                    </div>
+                    <h3>PDF to JPG</h3>
+                    <p>Convert PDF pages to high-quality images</p>
+                    <a href="pdf-to-jpg.html" class="tool-btn">
+                        <span>Use Tool</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Tool 7: JPG to PDF -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-pdf"></i>
+                    </div>
+                    <h3>JPG to PDF</h3>
+                    <p>Convert images to PDF documents</p>
+                    <a href="jpg-to-pdf.html" class="tool-btn">
+                        <span>Use Tool</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Tool 8: Excel to PDF -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-file-excel"></i>
+                    </div>
+                    <h3>Excel to PDF</h3>
+                    <p>Convert Excel spreadsheets to PDF</p>
+                    <a href="excel-to-pdf.html" class="tool-btn">
+                        <span>Use Tool</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Tool 9: Rotate PDF -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-redo-alt"></i>
+                    </div>
+                    <h3>Rotate PDF</h3>
+                    <p>Rotate PDF pages to correct orientation</p>
+                    <a href="rotate-pdf.html" class="tool-btn">
+                        <span>Use Tool</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Tool 10: Protect PDF -->
+                <div class="tool-card">
+                    <div class="tool-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Protect PDF</h3>
+                    <p>Add password protection to PDF files</p>
+                    <a href="protect-pdf.html" class="tool-btn">
+                        <span>Use Tool</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 PDFMaster. All rights reserved. | 100% Free PDF Tools</p>
+        </div>
+    </footer>
 </body>
 </html>
