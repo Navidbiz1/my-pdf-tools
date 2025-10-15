@@ -3,32 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PDFPro - Enterprise PDF Solutions</title>
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Glorious Techs - Professional PDF Tools</title>
     
-    <!-- TEMPORARY CSS - ADD THIS -->
+    <!-- COMPLETE TEMPORARY CSS -->
     <style>
-    body {
-        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%) !important;
-        color: white !important;
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
-        min-height: 100vh;
+    * {
         margin: 0;
         padding: 0;
+        box-sizing: border-box;
     }
+
+    body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        color: white;
+        min-height: 100vh;
+        overflow-x: hidden;
+    }
+
+    /* Animated Background */
+    .animated-bg {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: 
+            radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+            radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+            radial-gradient(circle at 40% 40%, rgba(120, 219, 255, 0.2) 0%, transparent 50%);
+        animation: float 6s ease-in-out infinite;
+        z-index: -1;
+    }
+
+    @keyframes float {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        50% { transform: translateY(-20px) rotate(1deg); }
+    }
+
+    /* Glass Navigation */
     .glass-navbar {
-        background: rgba(255,255,255,0.1) !important;
-        backdrop-filter: blur(20px) !important;
-        border-bottom: 1px solid rgba(255,255,255,0.2) !important;
-        padding: 1rem 0 !important;
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255,255,255,0.2);
+        padding: 1rem 0;
         position: fixed;
         width: 100%;
         top: 0;
         z-index: 1000;
     }
+
     .nav-container {
         max-width: 1200px;
         margin: 0 auto;
@@ -37,17 +61,36 @@
         align-items: center;
         padding: 0 2rem;
     }
+
+    .nav-brand {
+        display: flex;
+        align-items: center;
+    }
+
     .logo-wrapper {
         display: flex;
         align-items: center;
         gap: 0.75rem;
     }
+
     .logo-icon {
         font-size: 2rem;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
+        animation: pulse 2s infinite;
     }
+
+    @keyframes pulse {
+        0%, 100% { transform: scale(1); }
+        50% { transform: scale(1.1); }
+    }
+
+    .logo-text {
+        display: flex;
+        flex-direction: column;
+    }
+
     .logo-main {
         font-size: 1.5rem;
         font-weight: bold;
@@ -55,10 +98,12 @@
         -webkit-background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+
     .logo-sub {
         font-size: 0.8rem;
         color: #cbd5e1;
     }
+
     .stat-badge {
         background: rgba(255,255,255,0.1);
         padding: 0.5rem 1rem;
@@ -69,31 +114,233 @@
         gap: 0.5rem;
         font-size: 0.9rem;
     }
-    .container {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 2rem;
-        padding-top: 100px;
+
+    /* Hero Section */
+    .hero-section {
+        position: relative;
+        padding: 180px 0 100px;
+        text-align: center;
     }
+
+    .hero-bg {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(ellipse at center, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+    }
+
+    .hero-content {
+        max-width: 800px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 2;
+    }
+
+    .hero-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        padding: 0.5rem 1.5rem;
+        border-radius: 25px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 2rem;
+    }
+
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 1.5rem;
+    }
+
+    .title-line {
+        display: block;
+    }
+
+    .title-gradient {
+        background: linear-gradient(135deg, #667eea 0%, #f093fb 50%, #f5576c 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-size: 200% 200%;
+        animation: gradientShift 3s ease infinite;
+    }
+
+    @keyframes gradientShift {
+        0%, 100% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+    }
+
+    .hero-subtitle {
+        font-size: 1.3rem;
+        color: #cbd5e1;
+        margin-bottom: 3rem;
+        line-height: 1.6;
+    }
+
+    .hero-features {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-bottom: 3rem;
+        flex-wrap: wrap;
+    }
+
+    .feature {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: rgba(255,255,255,0.1);
+        padding: 0.75rem 1.5rem;
+        border-radius: 20px;
+        border: 1px solid rgba(255,255,255,0.2);
+        backdrop-filter: blur(10px);
+    }
+
+    .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    .cta-primary, .cta-secondary {
+        padding: 1rem 2rem;
+        border: none;
+        border-radius: 15px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cta-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+    }
+
+    .cta-secondary {
+        background: rgba(255,255,255,0.1);
+        color: white;
+        border: 1px solid rgba(255,255,255,0.2);
+        backdrop-filter: blur(10px);
+    }
+
+    .cta-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 20px 40px rgba(102, 126, 234, 0.4);
+    }
+
+    .cta-secondary:hover {
+        transform: translateY(-3px);
+        background: rgba(255, 255, 255, 0.15);
+    }
+
+    /* Tools Section */
+    .tools-section {
+        padding: 100px 0;
+        position: relative;
+    }
+
+    .section-header {
+        text-align: center;
+        margin-bottom: 4rem;
+    }
+
+    .section-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        padding: 0.5rem 1.5rem;
+        border-radius: 25px;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 1rem;
+    }
+
+    .section-header h2 {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        background: linear-gradient(135deg, #fff 0%, #a8b9ff 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+
+    .section-header p {
+        font-size: 1.2rem;
+        color: #cbd5e1;
+    }
+
+    /* Tools Grid */
     .tools-grid {
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
         gap: 2rem;
-        margin-top: 3rem;
+        max-width: 1200px;
+        margin: 0 auto;
     }
+
     .tool-card {
         background: rgba(255,255,255,0.1);
         backdrop-filter: blur(20px);
         border: 1px solid rgba(255,255,255,0.2);
         border-radius: 20px;
         padding: 2rem;
-        text-align: center;
+        position: relative;
+        overflow: hidden;
         transition: all 0.3s ease;
+        cursor: pointer;
     }
+
+    .tool-card::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        height: 1px;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+    }
+
+    .card-glow {
+        position: absolute;
+        top: -2px;
+        left: -2px;
+        right: -2px;
+        bottom: -2px;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        border-radius: 22px;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+    }
+
+    .tool-card:hover .card-glow {
+        opacity: 1;
+    }
+
     .tool-card:hover {
-        transform: translateY(-10px);
-        border-color: rgba(102, 126, 234, 0.5);
+        transform: translateY(-10px) scale(1.02);
+        border-color: rgba(255, 255, 255, 0.3);
     }
+
+    .tool-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+    }
+
     .tool-icon {
         width: 60px;
         height: 60px;
@@ -103,30 +350,121 @@
         align-items: center;
         justify-content: center;
         font-size: 1.5rem;
-        margin: 0 auto 1rem;
     }
+
+    .tool-badge {
+        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        padding: 0.25rem 0.75rem;
+        border-radius: 12px;
+        font-size: 0.7rem;
+        font-weight: 600;
+    }
+
+    .tool-card h3 {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    .tool-card p {
+        color: #cbd5e1;
+        line-height: 1.6;
+        margin-bottom: 1.5rem;
+    }
+
+    .tool-stats {
+        display: flex;
+        gap: 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .stat {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+        color: #94a3b8;
+    }
+
     .tool-btn {
-        display: inline-block;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.2);
+        padding: 1rem 1.5rem;
+        border-radius: 15px;
         color: white;
-        padding: 0.75rem 2rem;
-        border-radius: 25px;
         text-decoration: none;
         font-weight: 600;
-        margin-top: 1rem;
         transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
     }
+
+    .btn-glow {
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        transition: left 0.3s ease;
+        z-index: -1;
+    }
+
+    .tool-btn:hover .btn-glow {
+        left: 0;
+    }
+
     .tool-btn:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 10px 25px rgba(102, 126, 234, 0.4);
+        transform: translateX(5px);
+        border-color: rgba(102, 126, 234, 0.5);
+    }
+
+    /* Footer */
+    .footer {
+        background: rgba(255,255,255,0.1);
+        backdrop-filter: blur(20px);
+        border-top: 1px solid rgba(255,255,255,0.2);
+        padding: 2rem 0;
+        text-align: center;
+        margin-top: 4rem;
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .hero-title {
+            font-size: 2.5rem;
+        }
+        
+        .hero-features {
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        .tools-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .nav-container {
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .cta-buttons {
+            flex-direction: column;
+            align-items: center;
+        }
     }
     </style>
-    <!-- TEMPORARY CSS END -->
     
-    <link rel="stylesheet" href="css/style.css">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-</head>
-    <link rel="stylesheet" href="css/style.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
@@ -139,7 +477,10 @@
             <div class="nav-brand">
                 <div class="logo-wrapper">
                     <i class="fas fa-file-pdf logo-icon"></i>
-                    <span class="logo-text">PDFPro</span>
+                    <div class="logo-text">
+                        <div class="logo-main">Glorious Techs</div>
+                        <div class="logo-sub">PDF Free Tools</div>
+                    </div>
                 </div>
             </div>
             <div class="nav-stats">
@@ -267,10 +608,239 @@
                     </a>
                 </div>
 
-                <!-- Add more tools following the same pattern -->
+                <!-- Tool 3: Rotate PDF -->
+                <div class="tool-card" data-tool="rotate">
+                    <div class="card-glow"></div>
+                    <div class="tool-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-redo-alt"></i>
+                        </div>
+                        <div class="tool-badge">ORIENTATION</div>
+                    </div>
+                    <h3>Rotate PDF</h3>
+                    <p>Fix PDF page orientation with precise rotation controls for each page</p>
+                    <div class="tool-stats">
+                        <div class="stat">
+                            <i class="fas fa-undo"></i>
+                            <span>90° Increments</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-mouse-pointer"></i>
+                            <span>Selective Pages</span>
+                        </div>
+                    </div>
+                    <a href="rotate-pdf.html" class="tool-btn">
+                        <span>Rotate Now</span>
+                        <div class="btn-glow"></div>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Tool 4: Compress PDF -->
+                <div class="tool-card" data-tool="compress">
+                    <div class="card-glow"></div>
+                    <div class="tool-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-compress-alt"></i>
+                        </div>
+                        <div class="tool-badge">OPTIMIZED</div>
+                    </div>
+                    <h3>Compress PDF</h3>
+                    <p>Reduce PDF file size without compromising quality or readability</p>
+                    <div class="tool-stats">
+                        <div class="stat">
+                            <i class="fas fa-chart-line"></i>
+                            <span>Up to 80% Smaller</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-eye"></i>
+                            <span>Quality Preserved</span>
+                        </div>
+                    </div>
+                    <a href="compress-pdf.html" class="tool-btn">
+                        <span>Compress Now</span>
+                        <div class="btn-glow"></div>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Tool 5: PDF to JPG -->
+                <div class="tool-card" data-tool="pdf-to-jpg">
+                    <div class="card-glow"></div>
+                    <div class="tool-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-image"></i>
+                        </div>
+                        <div class="tool-badge">VISUAL</div>
+                    </div>
+                    <h3>PDF to JPG</h3>
+                    <p>Convert PDF pages to high-quality JPG images for sharing and editing</p>
+                    <div class="tool-stats">
+                        <div class="stat">
+                            <i class="fas fa-camera"></i>
+                            <span>HD Quality</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-palette"></i>
+                            <span>Color Accurate</span>
+                        </div>
+                    </div>
+                    <a href="pdf-to-jpg.html" class="tool-btn">
+                        <span>Convert Now</span>
+                        <div class="btn-glow"></div>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Tool 6: JPG to PDF -->
+                <div class="tool-card" data-tool="jpg-to-pdf">
+                    <div class="card-glow"></div>
+                    <div class="tool-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="tool-badge">PORTABLE</div>
+                    </div>
+                    <h3>JPG to PDF</h3>
+                    <p>Convert multiple images to a single PDF document with customizable layout</p>
+                    <div class="tool-stats">
+                        <div class="stat">
+                            <i class="fas fa-th-large"></i>
+                            <span>Multiple Layouts</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-border-all"></i>
+                            <span>Custom Arrangement</span>
+                        </div>
+                    </div>
+                    <a href="jpg-to-pdf.html" class="tool-btn">
+                        <span>Create PDF</span>
+                        <div class="btn-glow"></div>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Tool 7: PDF to Word -->
+                <div class="tool-card" data-tool="pdf-to-word">
+                    <div class="card-glow"></div>
+                    <div class="tool-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-file-word"></i>
+                        </div>
+                        <div class="tool-badge">COMING SOON</div>
+                    </div>
+                    <h3>PDF to Word</h3>
+                    <p>Convert PDF files to fully editable Word documents with perfect formatting</p>
+                    <div class="tool-stats">
+                        <div class="stat">
+                            <i class="fas fa-edit"></i>
+                            <span>Fully Editable</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-magic"></i>
+                            <span>Format Preserved</span>
+                        </div>
+                    </div>
+                    <a href="pdf-to-word.html" class="tool-btn">
+                        <span>Coming Soon</span>
+                        <div class="btn-glow"></div>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Tool 8: Word to PDF -->
+                <div class="tool-card" data-tool="word-to-pdf">
+                    <div class="card-glow"></div>
+                    <div class="tool-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                        <div class="tool-badge">COMING SOON</div>
+                    </div>
+                    <h3>Word to PDF</h3>
+                    <p>Convert Word documents to professional PDF format with one click</p>
+                    <div class="tool-stats">
+                        <div class="stat">
+                            <i class="fas fa-sync"></i>
+                            <span>Instant Conversion</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-lock"></i>
+                            <span>Secure Output</span>
+                        </div>
+                    </div>
+                    <a href="word-to-pdf.html" class="tool-btn">
+                        <span>Coming Soon</span>
+                        <div class="btn-glow"></div>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Tool 9: Excel to PDF -->
+                <div class="tool-card" data-tool="excel-to-pdf">
+                    <div class="card-glow"></div>
+                    <div class="tool-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-file-excel"></i>
+                        </div>
+                        <div class="tool-badge">COMING SOON</div>
+                    </div>
+                    <h3>Excel to PDF</h3>
+                    <p>Convert Excel spreadsheets to PDF while preserving formulas and formatting</p>
+                    <div class="tool-stats">
+                        <div class="stat">
+                            <i class="fas fa-table"></i>
+                            <span>Format Preserved</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-chart-bar"></i>
+                            <span>Charts Included</span>
+                        </div>
+                    </div>
+                    <a href="excel-to-pdf.html" class="tool-btn">
+                        <span>Coming Soon</span>
+                        <div class="btn-glow"></div>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
+
+                <!-- Tool 10: Protect PDF -->
+                <div class="tool-card" data-tool="protect-pdf">
+                    <div class="card-glow"></div>
+                    <div class="tool-header">
+                        <div class="tool-icon">
+                            <i class="fas fa-lock"></i>
+                        </div>
+                        <div class="tool-badge">COMING SOON</div>
+                    </div>
+                    <h3>Protect PDF</h3>
+                    <p>Add password protection and encryption to secure your sensitive documents</p>
+                    <div class="tool-stats">
+                        <div class="stat">
+                            <i class="fas fa-key"></i>
+                            <span>256-bit Encryption</span>
+                        </div>
+                        <div class="stat">
+                            <i class="fas fa-user-lock"></i>
+                            <span>Permission Control</span>
+                        </div>
+                    </div>
+                    <a href="protect-pdf.html" class="tool-btn">
+                        <span>Coming Soon</span>
+                        <div class="btn-glow"></div>
+                        <i class="fas fa-arrow-right"></i>
+                    </a>
+                </div>
             </div>
         </div>
     </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Glorious Techs. All rights reserved. | 100% Free PDF Tools</p>
+        </div>
+    </footer>
 
     <script>
         function scrollToTools() {
