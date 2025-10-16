@@ -315,6 +315,24 @@
         justify-content: center;
         margin-bottom: 0.5rem;
         color: #94a3b8;
+        overflow: hidden;
+    }
+    .preview-img img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    .info-box {
+        background: rgba(59, 130, 246, 0.2);
+        border: 1px solid rgba(59, 130, 246, 0.5);
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+    .info-box h4 {
+        color: #60a5fa;
+        margin-bottom: 0.5rem;
     }
     </style>
     <!-- TEMPORARY CSS END -->
@@ -323,7 +341,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/js/all.min.js"></script>
     <script src="https://unpkg.com/pdf-lib@1.17.1"></script>
     <script src="https://unpkg.com/downloadjs@1.4.7"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.min.js"></script>
 </head>
 <body>
     <!-- Navigation -->
@@ -357,6 +375,12 @@
             <div class="tool-header">
                 <h1 class="tool-title">PDF to JPG Converter</h1>
                 <p class="tool-subtitle">Convert PDF pages to high-quality JPG images for sharing and editing</p>
+            </div>
+
+            <!-- Info Box -->
+            <div class="info-box">
+                <h4><i class="fas fa-info-circle"></i> Important Note</h4>
+                <p>This tool provides basic PDF to JPG conversion in your browser. For high-quality conversion with complex PDFs, we recommend using our upcoming server-based version.</p>
             </div>
 
             <!-- Upload Area -->
@@ -448,6 +472,9 @@
     </div>
 
     <script>
+        // Set up PDF.js worker
+        pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.4.120/pdf.worker.min.js';
+
         let currentPDF = null;
         let totalPages = 0;
         let selectedPages = 'all';
@@ -519,8 +546,11 @@
 
             try {
                 const arrayBuffer = await file.arrayBuffer();
-                currentPDF = await PDFLib.PDFDocument.load(arrayBuffer);
-                totalPages = currentPDF.getPageCount();
+                
+                // Load PDF using PDF.js
+                const loadingTask = pdfjsLib.getDocument({ data: arrayBuffer });
+                currentPDF = await loadingTask.promise;
+                totalPages = currentPDF.numPages;
                 
                 // Update file info
                 document.getElementById('fileName').textContent = file.name;
@@ -555,82 +585,114 @@
                 // Determine which pages to convert
                 let pagesToConvert = [];
                 if (selectedPages === 'all') {
-                    for (let i = 0; i < totalPages; i++) {
+                    for (let i = 1; i <= totalPages; i++) {
                         pagesToConvert.push(i);
                     }
                 } else if (selectedPages === 'current') {
-                    pagesToConvert.push(0); // First page only
+                    pagesToConvert.push(1); // First page only
                 } else if (selectedPages === 'custom') {
-                    const fromPage = parseInt(document.getElementById('fromPage').value) - 1 || 0;
-                    const toPage = parseInt(document.getElementById('toPage').value) - 1 || totalPages - 1;
+                    const fromPage = parseInt(document.getElementById('fromPage').value) || 1;
+                    const toPage = parseInt(document.getElementById('toPage').value) || totalPages;
                     for (let i = fromPage; i <= toPage; i++) {
                         pagesToConvert.push(i);
                     }
                 }
 
-                // For demonstration, we'll create placeholder functionality
-                // In a real implementation, you would use a PDF rendering library
-                
                 let convertedCount = 0;
                 const totalToConvert = pagesToConvert.length;
 
                 for (let i = 0; i < pagesToConvert.length; i++) {
-                    const pageIndex = pagesToConvert[i];
+                    const pageNumber = pagesToConvert[i];
                     
-                    // Create a canvas element to "simulate" conversion
-                    const canvas = document.createElement('canvas');
-                    canvas.width = 800;
-                    canvas.height = 1000;
-                    const ctx = canvas.getContext('2d');
-                    
-                    // Draw a placeholder (in real implementation, render PDF page)
-                    ctx.fillStyle = '#1e293b';
-                    ctx.fillRect(0, 0, canvas.width, canvas.height);
-                    ctx.fillStyle = '#667eea';
-                    ctx.font = '30px Arial';
-                    ctx.textAlign = 'center';
-                    ctx.fillText(`Page ${pageIndex + 1}`, canvas.width / 2, canvas.height / 2);
-                    ctx.font = '20px Arial';
-                    ctx.fillText('PDF to JPG Conversion', canvas.width / 2, canvas.height / 2 + 40);
-                    
-                    // Convert canvas to image
-                    canvas.toBlob(async (blob) => {
-                        const url = URL.createObjectURL(blob);
+                    try {
+                        // Get the page
+                        const page = await currentPDF.getPage(pageNumber);
                         
-                        // Create preview
+                        // Set scale for quality
+                        let scale = 1.5; // Default medium quality
+                        switch (selectedQuality) {
+                            case 'high':
+                                scale = 3.0;
+                                break;
+                            case 'medium':
+                                scale = 1.5;
+                                break;
+                            case 'low':
+                                scale = 1.0;
+                                break;
+                        }
+                        
+                        const viewport = page.getViewport({ scale: scale });
+                        
+                        // Prepare canvas for rendering
+                        const canvas = document.createElement('canvas');
+                        const context = canvas.getContext('2d');
+                        canvas.width = viewport.width;
+                        canvas.height = viewport.height;
+                        
+                        // Render PDF page
+                        const renderContext = {
+                            canvasContext: context,
+                            viewport: viewport
+                        };
+                        
+                        await page.render(renderContext).promise;
+                        
+                        // Convert to JPG
+                        canvas.toBlob(async (blob) => {
+                            const url = URL.createObjectURL(blob);
+                            
+                            // Create preview
+                            const preview = document.createElement('div');
+                            preview.className = 'page-preview';
+                            preview.innerHTML = `
+                                <div class="preview-img">
+                                    <img src="${url}" alt="Page ${pageNumber}">
+                                </div>
+                                <div>Page ${pageNumber}</div>
+                            `;
+                            pagePreviews.appendChild(preview);
+                            
+                            // Create download button
+                            const downloadBtn = document.createElement('a');
+                            downloadBtn.href = url;
+                            downloadBtn.download = `page-${pageNumber}.jpg`;
+                            downloadBtn.className = 'download-btn';
+                            downloadBtn.innerHTML = `<i class="fas fa-download"></i> Download Page ${pageNumber}.jpg`;
+                            downloadButtons.appendChild(downloadBtn);
+                            
+                            convertedCount++;
+                            
+                            // If all pages converted, show success
+                            if (convertedCount === totalToConvert) {
+                                document.getElementById('conversionResult').textContent = 
+                                    `Successfully converted ${convertedCount} pages to JPG format`;
+                                resultArea.style.display = 'block';
+                                processBtn.disabled = false;
+                                processBtn.innerHTML = 'Convert to JPG';
+                            }
+                        }, 'image/jpeg', 0.8);
+                        
+                    } catch (pageError) {
+                        console.error(`Error converting page ${pageNumber}:`, pageError);
+                        
+                        // Create placeholder for failed conversion
                         const preview = document.createElement('div');
                         preview.className = 'page-preview';
                         preview.innerHTML = `
                             <div class="preview-img">
-                                <i class="fas fa-file-image" style="font-size: 2rem;"></i>
+                                <i class="fas fa-exclamation-triangle" style="font-size: 2rem; color: #f59e0b;"></i>
                             </div>
-                            <div>Page ${pageIndex + 1}</div>
+                            <div>Page ${pageNumber} (Failed)</div>
                         `;
                         pagePreviews.appendChild(preview);
                         
-                        // Create download button
-                        const downloadBtn = document.createElement('a');
-                        downloadBtn.href = url;
-                        downloadBtn.download = `page-${pageIndex + 1}.jpg`;
-                        downloadBtn.className = 'download-btn';
-                        downloadBtn.innerHTML = `<i class="fas fa-download"></i> Download Page ${pageIndex + 1}.jpg`;
-                        downloadButtons.appendChild(downloadBtn);
-                        
                         convertedCount++;
-                        
-                        // If all pages converted, show success
-                        if (convertedCount === totalToConvert) {
-                            document.getElementById('conversionResult').textContent = 
-                                `Successfully converted ${convertedCount} pages to JPG format`;
-                            resultArea.style.display = 'block';
-                            processBtn.disabled = false;
-                            processBtn.innerHTML = 'Convert to JPG';
-                        }
-                    }, 'image/jpeg', 0.8);
+                    }
                 }
 
             } catch (error) {
-                alert('Error converting PDF to JPG. Please try again.');
+                alert('Error converting PDF to JPG. Please try again with a simpler PDF file.');
                 console.error('PDF to JPG conversion error:', error);
                 processBtn.disabled = false;
                 processBtn.innerHTML = 'Convert to JPG';
